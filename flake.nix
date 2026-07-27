@@ -9,11 +9,7 @@
   };
 
   inputs = {
-    # Rervert nixpkgs URL back to the official repo once
-    # https://github.com/NixOS/nixpkgs/pull/540857
-    # is merged and is present in nixos-unstable branch.
-    # nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs.url = "github:imincik/nixpkgs/nixos-unstable+pr-540857";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:vic/import-tree";
