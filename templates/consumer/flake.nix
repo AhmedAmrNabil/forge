@@ -23,6 +23,9 @@
       perSystem =
         { system, pkgs, ... }:
         {
+          # nix fmt
+          formatter = pkgs.nixfmt-tree;
+
           forge = {
             # NOTE: update the repository url to your forge. e.g. "github:username/forge-repo"
             repositoryUrl = "github:ngi-nix/forge";
