@@ -47,9 +47,7 @@
         pkgs.swim
       ];
 
-      runtimes.shell = {
-        enable = true;
-      };
+      runtimes.shell.enable = true;
     };
 
     test.programs.script = ''

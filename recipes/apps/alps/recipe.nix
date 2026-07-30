@@ -55,10 +55,8 @@
         };
       };
 
-      runtimes = {
-        container.enable = true;
-        nixos.enable = true;
-      };
+      runtimes.container.enable = true;
+      runtimes.nixos.enable = true;
     };
 
     test.services.script = ''

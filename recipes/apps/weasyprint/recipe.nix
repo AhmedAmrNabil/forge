@@ -47,9 +47,7 @@
         pkgs.python3Packages.weasyprint
       ];
 
-      runtimes.shell = {
-        enable = true;
-      };
+      runtimes.shell.enable = true;
     };
 
     test.programs = {

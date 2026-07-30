@@ -40,9 +40,7 @@
         pkgs.arcan
       ];
 
-      runtimes.shell = {
-        enable = true;
-      };
+      runtimes.shell.enable = true;
     };
 
     test.programs = {

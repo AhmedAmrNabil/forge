@@ -34,9 +34,7 @@
         pkgs.sockstrace
       ];
 
-      runtimes.shell = {
-        enable = true;
-      };
+      runtimes.shell.enable = true;
     };
   };
 }

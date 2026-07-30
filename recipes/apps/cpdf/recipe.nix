@@ -94,10 +94,8 @@
       mainPackage = pkgs.ocamlPackages.cpdf;
       packages = with pkgs; [ ocamlPackages.cpdf ];
 
-      runtimes = {
-        shell.enable = true;
-        program.enable = true;
-      };
+      runtimes.shell.enable = true;
+      runtimes.program.enable = true;
     };
 
     test.programs.script = ''

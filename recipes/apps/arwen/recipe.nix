@@ -81,9 +81,7 @@
         ]))
       ];
 
-      runtimes.shell = {
-        enable = true;
-      };
+      runtimes.shell.enable = true;
     };
   };
 }

@@ -82,10 +82,8 @@
         datalab # gui
       ];
 
-      runtimes = {
-        shell.enable = true;
-        program.enable = true;
-      };
+      runtimes.shell.enable = true;
+      runtimes.program.enable = true;
     };
 
     # TODO:

@@ -42,9 +42,7 @@
         pkgs.inko
       ];
 
-      runtimes.shell = {
-        enable = true;
-      };
+      runtimes.shell.enable = true;
     };
 
     test.programs.packages = [ pkgs.writableTmpDirAsHomeHook ];

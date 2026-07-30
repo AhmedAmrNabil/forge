@@ -43,9 +43,7 @@
         pkgs.re-isearch
       ];
 
-      runtimes.shell = {
-        enable = true;
-      };
+      runtimes.shell.enable = true;
     };
 
     test.programs.script = ''
