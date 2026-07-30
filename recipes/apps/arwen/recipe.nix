@@ -2,8 +2,13 @@
   pkgs,
   ...
 }:
-
 {
+  pkgs.arwen = {
+    build.identityBuilder = {
+      enable = true;
+      derivation = pkgs.pkgsOriginal.arwen;
+    };
+  };
   apps.arwen = {
     displayName = "Arwen";
     description = "Cross-platform patching of shared libraries (ELF and Mach-O).";
