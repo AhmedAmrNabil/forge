@@ -47,6 +47,7 @@
       };
     };
 
+    test.programs.packages = [ pkgs.writableTmpDirAsHomeHook ];
     test.programs.script = ''
       mkdir -p hello/src
       cat <<EOF > hello/src/main.inko
