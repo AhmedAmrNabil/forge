@@ -1,8 +1,17 @@
 {
+  lib,
   pkgs,
   ...
 }:
-
+let
+  # https://github.com/NixOS/nixpkgs/pull/548013
+  sbcl_2_4_6 = pkgs.sbcl_2_4_6.overrideAttrs (old: {
+    postPatch = (lib.throwIf (lib.hasAttr "postPatch" old) "Nixpkgs pr 548013 is now in nixos-unstable, remove sbcl override in nyxt recipe.") ''
+      rm tests/elf-sans-immobile.test.sh
+    '';
+  });
+  nyxt = pkgs.nyxt.override { sbcl = sbcl_2_4_6; };
+in
 {
   apps.nyxt = {
     displayName = "Nyxt";
@@ -31,7 +40,7 @@
     };
 
     programs = {
-      mainPackage = pkgs.nyxt;
+      mainPackage = nyxt;
       runtimes.program.enable = true;
     };
 
