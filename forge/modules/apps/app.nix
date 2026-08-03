@@ -141,5 +141,11 @@
         default = self: "nixos-vm-config";
       };
     };
+
+    broken = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = "Whether the app is broken.";
+    };
   };
 }
