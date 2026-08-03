@@ -133,7 +133,12 @@ def main():
 
     with tempfile.TemporaryDirectory() as temp_dir:
         temp_path = Path(temp_dir)
-        _ = shutil.copytree(git_root, temp_dir, dirs_exist_ok=True)
+        _ = shutil.copytree(
+            git_root,
+            temp_dir,
+            dirs_exist_ok=True,
+            ignore=shutil.ignore_patterns(".git"),
+        )
 
         mock_recipes_root = temp_path / "recipes"
         if mock_recipes_root.exists():
