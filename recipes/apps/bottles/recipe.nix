@@ -32,5 +32,13 @@
       packages = [ pkgs.bottles ];
       runtimes.shell.enable = true;
     };
+
+    test.programs = {
+      # Checking bottles and bottles-cli are installed
+      script = ''
+        bottles --help | grep bottles
+        bottles-cli --help | grep bottles-cli
+      '';
+    };
   };
 }
