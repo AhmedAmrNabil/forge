@@ -93,7 +93,7 @@ Start the package recipe with the following content:
 Use the following command to get the list of all available licenses:
 
 ```bash
-nix eval nixpkgs#lib.licenses --json | jq
+nix repl nixpkgs <<<':p lib.licenses'
 ```
 
 :::
