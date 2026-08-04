@@ -29,8 +29,8 @@
     };
 
     programs = {
-      mainPackage = pkgs.bottles;
-      runtimes.program.enable = true;
+      packages = [ pkgs.bottles ];
+      runtimes.shell.enable = true;
     };
   };
 }
