@@ -64,9 +64,7 @@
         pkgs.himalaya
       ];
 
-      runtimes.shell = {
-        enable = true;
-      };
+      runtimes.shell.enable = true;
     };
   };
 }

@@ -46,10 +46,8 @@
       mainPackage = pkgs.zenroom;
       packages = with pkgs; [ zenroom ];
 
-      runtimes = {
-        shell.enable = true;
-        program.enable = true;
-      };
+      runtimes.shell.enable = true;
+      runtimes.program.enable = true;
     };
 
     test.programs.script = ''

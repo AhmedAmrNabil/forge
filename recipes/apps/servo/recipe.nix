@@ -51,9 +51,7 @@
       ];
       mainPackage = pkgs.servo;
 
-      runtimes.shell = {
-        enable = true;
-      };
+      runtimes.shell.enable = true;
       runtimes.program.enable = true;
     };
 

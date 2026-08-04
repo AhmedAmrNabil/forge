@@ -50,9 +50,7 @@
         pkgs.pmtiles
       ];
 
-      runtimes.shell = {
-        enable = true;
-      };
+      runtimes.shell.enable = true;
     };
 
     services = {
@@ -75,13 +73,8 @@
         process.ports = [ "8080:8080" ];
       };
 
-      runtimes = {
-        container = {
-          enable = true;
-        };
-
-        nixos.enable = true;
-      };
+      runtimes.container.enable = true;
+      runtimes.nixos.enable = true;
     };
 
     test = {

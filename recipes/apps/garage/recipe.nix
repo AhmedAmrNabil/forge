@@ -76,9 +76,7 @@
         pkgs.garage_2
       ];
 
-      runtimes.shell = {
-        enable = true;
-      };
+      runtimes.shell.enable = true;
     };
 
     services = {

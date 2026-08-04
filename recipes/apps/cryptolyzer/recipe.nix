@@ -45,9 +45,7 @@
         pkgs.cryptolyzer
       ];
 
-      runtimes.shell = {
-        enable = true;
-      };
+      runtimes.shell.enable = true;
     };
 
     test.programs.script = ''

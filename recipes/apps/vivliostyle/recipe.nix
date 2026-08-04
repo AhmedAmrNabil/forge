@@ -59,10 +59,8 @@
       mainPackage = pkgs.vivliostyle;
       packages = with pkgs; [ vivliostyle ];
 
-      runtimes = {
-        shell.enable = true;
-        program.enable = true;
-      };
+      runtimes.shell.enable = true;
+      runtimes.program.enable = true;
     };
   };
 }
