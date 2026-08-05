@@ -134,7 +134,7 @@
                   };
                 }
                 // lib.optionalAttrs config.build.debug {
-                  shellHook = "source ${forge-inputs.inputs.nix-utils}/nix-develop-interactive.bash";
+                  shellHook = "source ${forge-inputs.nix-utils}/nix-develop-interactive.bash";
                 }
                 //
                   # Warning(co-existence): `extraAttrs` is overridden by the builder's options.
