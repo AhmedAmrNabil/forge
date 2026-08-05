@@ -5,6 +5,19 @@
 }:
 
 {
+  pkgs.qlever = {
+    build.identityBuilder = {
+      enable = true;
+      derivation = pkgs.pkgsOriginal.qlever;
+    };
+  };
+
+  pkgs.qlever-control = {
+    build.identityBuilder = {
+      enable = true;
+      derivation = pkgs.pkgsOriginal.qlever-control;
+    };
+  };
   apps.qlever = {
     displayName = "QLever";
     description = "Web-based user interface for QLever SPARQL engine.";
