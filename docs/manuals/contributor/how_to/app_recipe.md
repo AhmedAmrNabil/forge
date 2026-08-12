@@ -53,12 +53,16 @@ Start the recipe with the following content:
       echo "with syntax highlighting"
       ```
     '';
-  };
 
-  # More configuration to be added here.
-  # ...
+    # More configuration to be added here.
+    # ...
+  };
 }
 ````
+
+::: {important}
+Ensure that the remainder of the application recipe is done within the `apps.app-name` block to avoid nasty infinite recursion errors.
+:::
 
 ### Links
 
