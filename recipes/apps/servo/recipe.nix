@@ -48,6 +48,8 @@
       Commons = [
         "Servo-ServiceWorker-WebAPI"
         "Servo-Editability"
+        "Servo-multimedia"
+        "Servo-writingmodes"
       ];
     };
 
