@@ -124,7 +124,8 @@ body {
 
 /* Light mode styling */
 [data-bs-theme="light"] .m-item-card,
-[data-bs-theme="light"] .list-group-item {
+[data-bs-theme="light"] .list-group-item,
+[data-bs-theme="light"] .m-sidebar {
   background-color: #f8f9fa;
   border-color: #e9ecef;
 }
@@ -138,7 +139,8 @@ body {
 
 /* Dark mode: darker background color for cards and list items */
 [data-bs-theme="dark"] .m-item-card,
-[data-bs-theme="dark"] .list-group-item {
+[data-bs-theme="dark"] .list-group-item,
+[data-bs-theme="dark"] .m-sidebar {
   background-color: #16191d;
   border-color: #2d3238;
 }
@@ -153,7 +155,8 @@ body {
 /* Fallback for when data-bs-theme is unset */
 @media (prefers-color-scheme: light) {
   :root:not([data-bs-theme="dark"]) .m-item-card,
-  :root:not([data-bs-theme="dark"]) .list-group-item {
+  :root:not([data-bs-theme="dark"]) .list-group-item,
+  :root:not([data-bs-theme="dark"]) .m-sidebar {
     background-color: #f8f9fa;
     border-color: #e9ecef;
   }
@@ -168,7 +171,8 @@ body {
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-bs-theme="light"]) .m-item-card,
-  :root:not([data-bs-theme="light"]) .list-group-item {
+  :root:not([data-bs-theme="light"]) .list-group-item,
+  :root:not([data-bs-theme="light"]) .m-sidebar {
     background-color: #16191d;
     border-color: #2d3238;
   }
