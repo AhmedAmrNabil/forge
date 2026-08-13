@@ -445,6 +445,10 @@ a:link {
 [data-bs-theme="light"] {
   --bs-primary-rgb: 76, 110, 181; /* nixos logo color dark blue - Not enough contrast */
   --bs-primary-text-emphasis: #00418f;
+  --bs-link-color: #00418f;
+  --bs-link-color-rgb: 0, 65, 143;
+  --bs-link-hover-color: #002d62;
+  --bs-link-hover-color-rgb: 0, 45, 98;
 }
 
 [data-bs-theme="dark"] {
