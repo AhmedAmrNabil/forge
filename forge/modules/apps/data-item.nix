@@ -2,6 +2,7 @@
   config,
   name,
   lib,
+  pkgs,
   ...
 }:
 {
@@ -21,11 +22,13 @@
       default = lib.optionalString (config.path != null) (
         lib.removeSuffix "\n" (lib.readFile config.path)
       );
+      defaultText = lib.literalExpression ''lib.optionalString (config.path != null) (lib.removeSuffix "\n" (lib.readFile config.path))'';
       description = "Data item content.";
     };
     path = lib.mkOption {
-      type = lib.types.nullOr lib.types.path;
-      default = null;
+      type = lib.types.path;
+      default = pkgs.writeText config.name config.content;
+      defaultText = lib.literalExpression "pkgs.writeText config.name config.content";
       description = "Data item absolute path.";
     };
   };
