@@ -22,6 +22,8 @@
       source = "https://codeberg.org/comaps/comaps";
     };
 
+    icon = ./icon.svg;
+
     ngi.grants = {
       Commons = [
         "CoMaps"
