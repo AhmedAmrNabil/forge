@@ -43,10 +43,36 @@ viewPaginationContent page viewItem =
 
 viewPaginationItems : PagePagination a -> (a -> Html Update) -> List (Html Update)
 viewPaginationItems page viewItem =
-    page.pagePagination_list
-        |> List.at (page.pagePagination_current - 1)
-        |> Maybe.withDefault []
-        |> List.map viewItem
+    let
+        items =
+            page.pagePagination_list
+                |> List.at (page.pagePagination_current - 1)
+                |> Maybe.withDefault []
+
+        renderedItems =
+            List.map viewItem items
+
+        missingCount =
+            page.pagePagination_MaxSize - List.length items
+    in
+    if missingCount > 0 && List.length items > 0 then
+        let
+            -- duplicate the first item to maintain realistic height, but hide it
+            -- we wrap the viewItem result to ensure it has visibility: hidden
+            invisibleItem =
+                items
+                    |> List.head
+                    |> Maybe.map viewItem
+                    |> Maybe.map (\html -> div [ class "invisible" ] [ html ])
+                    |> Maybe.withDefault (text "")
+
+            padding =
+                List.repeat missingCount invisibleItem
+        in
+        renderedItems ++ padding
+
+    else
+        renderedItems
 
 
 viewPaginationNavigation :
