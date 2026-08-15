@@ -111,12 +111,10 @@ in
     };
 
     test = {
-      packages = [ pkgs.xvfb-run ];
       script = ''
         export LC_ALL=C.UTF-8
         export LANG=C.UTF-8
-        export QT_QPA_PLATFORM=offscreen
-        xvfb-run labplot --help-all | grep -q "LabPlot"
+        labplot -platform offscreen --help-all | grep -q "LabPlot"
       '';
     };
   };
