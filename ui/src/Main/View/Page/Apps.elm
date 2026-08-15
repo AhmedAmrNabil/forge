@@ -5,6 +5,7 @@ import Html.Attributes exposing (attribute, class, href, src, style)
 import Main.Config exposing (..)
 import Main.Config.App exposing (..)
 import Main.Helpers.Html exposing (..)
+import Main.Helpers.List as List
 import Main.Helpers.Nix exposing (..)
 import Main.Icons exposing (..)
 import Main.Model exposing (..)
@@ -19,19 +20,34 @@ import Main.View.Pagination exposing (PaginationVisibility(..), viewPaginationIt
 
 viewPageApps : Model -> PageApps -> Html Update
 viewPageApps model pageApps =
-    viewPageAppsPagination
-        pageApps.pageApps_pagination
-        (viewPageAppsApp model pageApps)
-        (\modifyRoutePagination ->
-            let
-                routeApps =
-                    pageApps.pageApps_route
-            in
-            Route_Apps
-                { routeApps
-                    | routeApps_pagination = routeApps.routeApps_pagination |> modifyRoutePagination
-                }
-        )
+    div []
+        [ viewPageAppsPagination
+            pageApps.pageApps_pagination
+            (viewPageAppsApp model pageApps)
+            (\modifyRoutePagination ->
+                let
+                    routeApps =
+                        pageApps.pageApps_route
+                in
+                Route_Apps
+                    { routeApps
+                        | routeApps_pagination = routeApps.routeApps_pagination |> modifyRoutePagination
+                    }
+            )
+        , let
+            nextPageApps =
+                pageApps.pageApps_pagination.pagePagination_list
+                    |> List.at pageApps.pageApps_pagination.pagePagination_current
+                    |> Maybe.withDefault []
+          in
+          div [ style "display" "none" ]
+            (List.map
+                (\app ->
+                    img [ src (getAppIconPath app.app_name) ] []
+                )
+                nextPageApps
+            )
+        ]
 
 
 viewPageAppsPagination : PagePagination a -> (a -> Html Update) -> ((RoutePagination -> RoutePagination) -> Route) -> Html Update
@@ -61,7 +77,6 @@ viewPageAppsApp _ _ app =
             [ img
                 [ src (getAppIconPath app.app_name)
                 , class "item-card-icon mb-2"
-                , attribute "loading" "lazy"
                 , attribute "alt" (app.app_displayName ++ " icon")
                 ]
                 []
