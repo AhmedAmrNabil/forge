@@ -74,6 +74,8 @@ viewPagePkgsItem model pagePkgs pkg =
         [ class "list-item list-group-item list-group-item-action flex-column align-items-start position-relative"
         , id itemId
         , attribute "data-testid" "pkg-result"
+        , onClick (Update_Route onClickRoute)
+        , style "cursor" "pointer"
         ]
         [ div
             []
@@ -83,9 +85,10 @@ viewPagePkgsItem model pagePkgs pkg =
                     ]
                     [ a
                         [ href (onClickRoute |> routeToString)
-                        , class "stretched-link text-decoration-none"
+                        , class "text-decoration-none"
                         , onClick (Update_Route onClickRoute)
                         , style "color" "inherit"
+                        , attribute "draggable" "false"
                         ]
                         [ code []
                             [ text pkg.pkg_pname

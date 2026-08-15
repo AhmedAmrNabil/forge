@@ -64,12 +64,11 @@ viewPageAppsApp _ _ app =
         onClickRoute =
             Route_App { defaultRouteApp | routeApp_name = app.app_name }
     in
-    a
-        [ href (onClickRoute |> routeToString)
-        , class "card m-item-card shadow-sm p-2 p-sm-3"
-        , style "text-decoration" "none"
+    div
+        [ class "card m-item-card shadow-sm p-2 p-sm-3"
         , attribute "data-testid" "app-result"
         , onClick (Update_Route onClickRoute)
+        , style "cursor" "pointer"
         ]
         [ div
             [ class "d-flex flex-column align-items-center w-100"
@@ -80,7 +79,16 @@ viewPageAppsApp _ _ app =
                 , attribute "alt" (app.app_displayName ++ " icon")
                 ]
                 []
-            , h5 [ class "mb-1 fw-bold item-card-title text-center text-truncate w-100 px-2" ] [ text app.app_displayName ]
+            , h5 [ class "mb-1 fw-bold item-card-title text-center text-truncate w-100 px-2" ]
+                [ a
+                    [ href (onClickRoute |> routeToString)
+                    , class "text-decoration-none"
+                    , style "color" "inherit"
+                    , onClick (Update_Route onClickRoute)
+                    , attribute "draggable" "false"
+                    ]
+                    [ text app.app_displayName ]
+                ]
             , p
                 [ class "mb-2 text-body-secondary m-item-card-description text-center"
                 ]

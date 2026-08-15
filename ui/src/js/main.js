@@ -6,6 +6,14 @@ import { initSmoothScroll } from "./SmoothScroll.js";
 import { initTitle } from "./Title.js";
 import "./CodeHighlightJS.js";
 
+// Intercept clicks if the user is selecting text, preventing cards from navigating
+document.addEventListener("click", (e) => {
+  const selection = window.getSelection();
+  if (selection && selection.toString().trim().length > 0) {
+    e.stopPropagation();
+  }
+}, true);
+
 // work around github pages adding extra trailing slash
 if (
   window.location.pathname.endsWith("/")
