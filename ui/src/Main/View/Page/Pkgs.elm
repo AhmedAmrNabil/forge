@@ -70,12 +70,10 @@ viewPagePkgsItem model pagePkgs pkg =
                     | routePkgs_focus = Just <| RoutePkgsFocus_Pkg itemId
                 }
     in
-    a
-        [ class "list-item list-group-item list-group-item-action flex-column align-items-start"
+    div
+        [ class "list-item list-group-item list-group-item-action flex-column align-items-start position-relative"
         , id itemId
-        , href (onClickRoute |> routeToString)
         , attribute "data-testid" "pkg-result"
-        , onClick (Update_Route onClickRoute)
         ]
         [ div
             []
@@ -83,8 +81,15 @@ viewPagePkgsItem model pagePkgs pkg =
                 [ h5
                     [ class "mb-1"
                     ]
-                    [ code []
-                        [ text pkg.pkg_pname
+                    [ a
+                        [ href (onClickRoute |> routeToString)
+                        , class "stretched-link text-decoration-none"
+                        , onClick (Update_Route onClickRoute)
+                        , style "color" "inherit"
+                        ]
+                        [ code []
+                            [ text pkg.pkg_pname
+                            ]
                         ]
                     , span
                         [ style "font-size" ".8rem"
@@ -96,7 +101,7 @@ viewPagePkgsItem model pagePkgs pkg =
                 ]
             , pkg.pkg_description |> Markdown.render
             ]
-        , div [ class "d-flex flex-wrap gap-3" ]
+        , div [ class "d-flex flex-wrap gap-3 position-relative z-2" ]
             (List.append
                 (pkg.pkg_licenses |> List.map viewLicense)
                 [ a

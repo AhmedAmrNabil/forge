@@ -35,18 +35,21 @@ viewPageRecipeOptionsItem _ page ( optionPath, option ) =
                     | routeRecipeOptions_focus = Just <| RouteRecipeOptionsFocus_Option optionPath
                 }
     in
-    a
-        [ class "list-item list-group-item list-group-item-action flex-column align-items-start"
-        , href (routeItem |> routeToString)
+    div
+        [ class "list-item list-group-item list-group-item-action flex-column align-items-start position-relative"
         , attribute "data-testid" "option-result"
         , id optionName
-        , onClick (Update_Route routeItem)
         ]
         [ div []
             [ h5
                 [ class "mb-1"
                 ]
-                [ code [ class "option-name" ] [ text optionName ]
+                [ a
+                    [ href (routeItem |> routeToString)
+                    , class "stretched-link text-decoration-none"
+                    , onClick (Update_Route routeItem)
+                    ]
+                    [ code [ class "option-name" ] [ text optionName ] ]
                 ]
             ]
         , div []
