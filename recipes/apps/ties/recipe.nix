@@ -13,31 +13,31 @@ in
     displayName = "Ties";
     description = "A federated network to bookmark, organize, share and discover good web pages.";
     usage = ''
-      Ties is a personal and federated space for keeping track of the web pages you care about. Use it to build collections of interesting pages, browse and search bookmarks, share curated lists with others, and discover pages through people whose taste you trust. 
+      Ties is a personal and federated space for keeping track of the web pages you care about. Use it to build collections of interesting pages, browse and search bookmarks, share curated lists with others, and discover pages through people whose taste you trust.
 
       Ties is designed around the idea that finding good websites is valuable and that sharing carefully curated collections can help others discover them. You can follow other users, explore their collections, and build a network of trusted users whose bookmarks become part of your search and discovery space.
 
-      #### Getting Started 
-      Ties requires a PostgreSQL database. There are several ways to run the server: 
+      #### Getting Started
+      Ties requires a PostgreSQL database. There are several ways to run the server:
 
-      - **Container:** Run Ties together with a PostgreSQL service using the container runtime. 
-      - **NixOS/VM:** Run Ties as a NixOS service with PostgreSQL configured by the VM runtime. 
-      - **Local binary:** Use the Ties binary directly with an existing PostgreSQL instance. 
+      - **Container:** Run Ties together with a PostgreSQL service using the container runtime.
+      - **NixOS/VM:** Run Ties as a NixOS service with PostgreSQL configured by the VM runtime.
+      - **Local binary:** Use the Ties binary directly with an existing PostgreSQL instance.
 
       For instructions on starting each runtime, click the `Run` button in the top-right corner of this page.
 
-      If you already have PostgreSQL running locally, you can start Ties directly with: 
+      If you already have PostgreSQL running locally, you can start Ties directly with:
 
-      ```bash 
+      ```bash
       ties start \ 
         --database-url <pg-socket> \ 
         --base-url http://localhost:${listenPort} \ 
         --listen localhost:${listenPort}
       ```
 
-      Once Ties is running, open the web interface: 
+      Once Ties is running, open the web interface:
 
-      [http://localhost:${listenPort}](http://localhost:${listenPort}) 
+      [http://localhost:${listenPort}](http://localhost:${listenPort})
 
       Optionally setup the administrator credentials for this instance:
 
@@ -59,9 +59,9 @@ in
 
       Collections can be shared with other Ties users or exposed publicly on the web. This makes Ties useful both as a personal bookmark manager and as a way to curate and publish reading lists or collections of interesting websites.
 
-      #### Browser Compatibility 
+      #### Browser Compatibility
 
-      When running a self-hosted instance locally, some browsers may not work correctly with the default configuration. Ties uses secure cookies for authentication, but browsers differ in whether they allow secure cookies when accessing an application over `http://localhost`. 
+      When running a self-hosted instance locally, some browsers may not work correctly with the default configuration. Ties uses secure cookies for authentication, but browsers differ in whether they allow secure cookies when accessing an application over `http://localhost`.
 
       If you are unable to log in, try accessing the instance with a browser that supports secure cookies on `localhost` eg. Chromium.
 

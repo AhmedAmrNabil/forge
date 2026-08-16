@@ -27,6 +27,11 @@ in
     };
 
     build.extraAttrs = {
+      patches = [
+        # Remove on next release if https://github.com/raffomania/ties/pull/396 is merged
+        ./0001-Omit-Secure-cookie-for-http-deployment.patch
+        ./0002-Fix-cookie-parser-to-handle-multiple-cookies-correct.patch
+      ];
       checkType = "debug";
       preCheck = ''
         # spin up a temporary postgres server for testing
