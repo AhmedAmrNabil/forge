@@ -1,12 +1,11 @@
 {
+  lib,
   config,
   pkgs,
   ...
 }:
 let
   recipe = config.apps.ties;
-  adminUsername = "admin";
-  adminPassword = "Admin@1234";
   listenPort = "8080";
 in
 {
@@ -40,10 +39,10 @@ in
 
       [http://localhost:${listenPort}](http://localhost:${listenPort}) 
 
-      Sign in using the administrator credentials configured for this instance: 
+      Optionally setup the administrator credentials for this instance:
 
-      - **Username:** `${adminUsername}` 
-      - **Password:** `${adminPassword}`
+      - **Username:** `configData.adminUsername` (defaults to `admin`)
+      - **Password:** `configData.adminPasswordFile` path to a file with the admin password (defaults to `/var/lib/ties/admin-password`, password defaults to `Admin@1234`)
 
       #### Discovery
 
@@ -99,7 +98,27 @@ in
     services = {
       components.ties = {
         process = {
-          command = pkgs.ties;
+          configData."adminUsername" = {
+            text = "admin";
+            path = "adminUsername";
+          };
+          configData."adminPasswordFile" = {
+            text = "/var/lib/ties/admin-password";
+            path = "adminPasswordFile";
+          };
+
+          command = pkgs.writeShellScriptBin "ties" ''
+            export ADMIN_USERNAME=$(<"$XDG_CONFIG_HOME/adminUsername")
+            export ADMIN_PASSWORD="Admin@1234"
+
+            ADMIN_PASS_FILE=$(<"$XDG_CONFIG_HOME/adminPasswordFile")
+            if [ -s "$ADMIN_PASS_FILE" ]; then
+              export ADMIN_PASSWORD=$(<"$ADMIN_PASS_FILE")
+            fi
+
+            exec ${lib.getExe pkgs.ties} "$@"
+          '';
+
           ports = [ "${listenPort}:${listenPort}" ];
           argv = [
             "start"
@@ -109,10 +128,6 @@ in
             "http://localhost:${listenPort}"
             "--listen"
             "0.0.0.0:${listenPort}" # accept connections from outside the container
-            "--admin_username"
-            "${adminUsername}"
-            "--admin_password"
-            "${adminPassword}"
           ];
         };
 
