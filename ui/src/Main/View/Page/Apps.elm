@@ -127,7 +127,7 @@ viewPageAppsApp _ _ app =
                 [ text app.app_description ]
             ]
         , div
-            [ class "d-none d-sm-flex flex-wrap justify-content-center align-items-center gap-1 w-100 mt-auto"
+            [ class "d-flex flex-wrap justify-content-center align-items-center gap-1 w-100 mt-auto"
             ]
             (List.concat
                 [ if app.app_programs.appPrograms_runtimes.appProgramsRuntimes_program.enable then
