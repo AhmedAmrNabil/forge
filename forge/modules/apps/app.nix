@@ -3,6 +3,7 @@
   lib,
   name,
   specialArgs,
+  pkgs,
   ...
 }:
 {
@@ -100,7 +101,7 @@
         string, which are both normalized into a `{ name, content, path }`
         attribute set.
 
-        Note that `path` is `null` for strings.
+        For strings, `path` automatically resolves to a file in the Nix store containing the string content.
       '';
       default = { };
       example = lib.literalExpression ''
@@ -132,9 +133,14 @@
               # custom attribute set
               value;
 
-          dataItemType = lib.types.coercedTo atomType toDataItem (lib.types.submodule ./data-item.nix);
+          dataItemType = lib.types.coercedTo atomType toDataItem (
+            lib.types.submoduleWith {
+              modules = [ ./data-item.nix ];
+              specialArgs = { inherit pkgs; };
+            }
+          );
         in
-        lib.types.attrsOf dataItemType;
+        lib.types.lazyAttrsOf dataItemType;
     };
 
     # Portable services configuration
