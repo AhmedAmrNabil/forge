@@ -20,7 +20,7 @@
 
     build.standardBuilder = {
       enable = true;
-      packages.build = lib.optionals pkgs.stdenv.isLinux [ pkgs.autoPatchelfHook ];
+      packages.build = lib.optionals pkgs.stdenv.hostPlatform.isLinux [ pkgs.autoPatchelfHook ];
       packages.run = [
         pkgs.libxml2
         pkgs.libz
