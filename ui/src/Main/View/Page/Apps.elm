@@ -81,7 +81,7 @@ viewPageAppsApp _ _ app =
             Route_App { defaultRouteApp | routeApp_name = app.app_name }
     in
     div
-        [ class "card m-item-card shadow-sm p-2 p-sm-3"
+        [ class "card m-item-card shadow-sm p-2 p-sm-3 h-100 d-flex flex-column"
         , attribute "data-testid" "app-result"
         , onClick (Update_Route onClickRoute)
         , style "cursor" "pointer"
@@ -118,8 +118,11 @@ viewPageAppsApp _ _ app =
                     ]
                     [ text app.app_displayName ]
                 ]
-            , p
-                [ class "mb-2 text-body-secondary m-item-card-description text-center"
+            ]
+        , div
+            [ class "flex-grow-1 d-flex align-items-center w-100 my-2" ]
+            [ p
+                [ class "mb-0 text-body-secondary m-item-card-description text-center w-100"
                 ]
                 [ text app.app_description ]
             ]
