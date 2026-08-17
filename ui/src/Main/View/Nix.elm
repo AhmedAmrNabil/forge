@@ -20,7 +20,7 @@ viewNixLiteralExpression : NixLiteralExpression -> Html Update
 viewNixLiteralExpression lit =
     case lit.nixLiteralExpression_type of
         "literalExpression" ->
-            code [ style "white-space" "pre" ] [ text lit.nixLiteralExpression_text ]
+            code [ style "white-space" "pre-wrap", style "word-wrap" "break-word" ] [ text lit.nixLiteralExpression_text ]
 
         _ ->
             text lit.nixLiteralExpression_text

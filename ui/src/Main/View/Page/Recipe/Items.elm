@@ -1,7 +1,7 @@
 module Main.View.Page.Recipe.Items exposing (..)
 
 import Html exposing (Html, a, code, div, h5, span, text)
-import Html.Attributes exposing (attribute, class, href, id)
+import Html.Attributes exposing (attribute, class, href, id, style)
 import Main.Config exposing (..)
 import Main.Config.App exposing (..)
 import Main.Helpers.Html exposing (..)
@@ -35,18 +35,26 @@ viewPageRecipeOptionsItem _ page ( optionPath, option ) =
                     | routeRecipeOptions_focus = Just <| RouteRecipeOptionsFocus_Option optionPath
                 }
     in
-    a
-        [ class "list-item list-group-item list-group-item-action flex-column align-items-start"
-        , href (routeItem |> routeToString)
+    div
+        [ class "list-item list-group-item list-group-item-action flex-column align-items-start position-relative"
         , attribute "data-testid" "option-result"
         , id optionName
         , onClick (Update_Route routeItem)
+        , style "cursor" "pointer"
         ]
-        [ div []
+        [ div
+            [ class "d-flex w-100 justify-content-between"
+            ]
             [ h5
                 [ class "mb-1"
                 ]
-                [ code [ class "option-name" ] [ text optionName ]
+                [ a
+                    [ href (routeItem |> routeToString)
+                    , class "text-decoration-none"
+                    , onClick (Update_Route routeItem)
+                    , attribute "draggable" "false"
+                    ]
+                    [ code [ class "option-name" ] [ text optionName ] ]
                 ]
             ]
         , div []
