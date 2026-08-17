@@ -60,7 +60,7 @@ updateRouteApps route =
                         )
                         (model.model_config.config_apps
                             |> Dict.values
-                            |> List.sortBy .app_displayName
+                            |> List.sortBy (\app -> String.toLower app.app_displayName)
                         )
                         search
 
