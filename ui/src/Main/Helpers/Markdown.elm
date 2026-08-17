@@ -87,6 +87,27 @@ renderer =
         | codeBlock =
             \block ->
                 block |> codeBlock
+        , link =
+            \link content ->
+                case link.title of
+                    Just title ->
+                        Html.a
+                            [ Html.Attributes.href link.destination
+                            , Html.Attributes.title title
+                            , Html.Attributes.target "_blank"
+                            , Html.Attributes.rel "noopener"
+                            , onClickStopPropagation
+                            ]
+                            content
+
+                    Nothing ->
+                        Html.a
+                            [ Html.Attributes.href link.destination
+                            , Html.Attributes.target "_blank"
+                            , Html.Attributes.rel "noopener"
+                            , onClickStopPropagation
+                            ]
+                            content
         , orderedList =
             \startingIndex items ->
                 case intToGfmAlert startingIndex of

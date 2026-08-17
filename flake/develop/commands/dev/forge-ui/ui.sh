@@ -140,4 +140,6 @@ EOT
 systemctl --user restart --no-block \
   "$unit"-esbuild.service
 journalctl --since "-5s" --user -f \
-  -u "$unit-*".service
+  -u "$unit"-backend.service \
+  -u "$unit"-elm-watch.service \
+  -u "$unit"-esbuild.service
