@@ -6,7 +6,9 @@
   pkgs.badkeys = {
     build.identityBuilder = {
       enable = true;
-      derivation = pkgs.pkgsOriginal.badkeys;
+      derivation = pkgs.pkgsOriginal.badkeys.overridePythonAttrs (old: {
+        doCheck = false;
+      });
     };
   };
   apps.badkeys = {

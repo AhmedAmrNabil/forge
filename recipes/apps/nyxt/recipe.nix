@@ -1,24 +1,15 @@
 {
-  lib,
   pkgs,
   ...
 }:
-let
-  # https://github.com/NixOS/nixpkgs/pull/548013
-  sbcl_2_4_6 = pkgs.sbcl_2_4_6.overrideAttrs (old: {
-    postPatch = (lib.throwIf (lib.hasAttr "postPatch" old) "Nixpkgs pr 548013 is now in nixos-unstable, remove sbcl override in nyxt recipe.") ''
-      rm tests/elf-sans-immobile.test.sh
-    '';
-  });
-  nyxt = pkgs.pkgsOriginal.nyxt.override { sbcl = sbcl_2_4_6; };
-in
 {
   pkgs.nyxt = {
     build.identityBuilder = {
       enable = true;
-      derivation = nyxt;
+      derivation = pkgs.pkgsOriginal.nyxt;
     };
   };
+
   apps.nyxt = {
     displayName = "Nyxt";
     description = "Infinitely extensible web browser with Lisp-based customization.";
@@ -46,7 +37,7 @@ in
     };
 
     programs = {
-      mainPackage = nyxt;
+      mainPackage = pkgs.nyxt;
       runtimes.program.enable = true;
     };
 
