@@ -262,6 +262,11 @@ highlightjs-code pre {
   border-radius: 12px;
   color: transparent; /* Hide alt text before image loads on firefox */
   font-size: 0;
+  transition: transform 0.1s ease-in-out;
+}
+
+.item-header-icon:hover {
+  transform: scale(1.03);
 }
 
 /* Hide the annoying border around search bar that bootstrap adds */
