@@ -1,44 +1,51 @@
 import { expect, test } from "@playwright/test";
-import { TEST_PKG_SEARCH } from "../constants";
+import { TEST_APP_NAME, TEST_APP_SEARCH } from "../constants";
 
 test.describe("Markdown Rendering", () => {
   test.beforeEach(async ({ page }) => {
     const responsePromise = page.waitForResponse((response) => response.url().includes("forge-config.json"));
-    await page.goto("./pkgs");
+    await page.goto("./apps");
     await responsePromise;
   });
 
   test("markdown links open in a new tab without triggering parent card click", async ({ page, context }) => {
     const searchBar = page.getByTestId("main-search-bar");
-    await searchBar.fill(TEST_PKG_SEARCH);
+    await searchBar.fill(TEST_APP_SEARCH);
 
-    const testPackage = page.locator(`[data-testid="pkg-result"][id="mock-test-pkg"]`);
-    await expect(testPackage).toBeVisible();
+    const testApp = page.locator(`[data-testid="app-result"]:has([data-app-name="${TEST_APP_NAME}"])`).first();
+    await expect(testApp).toBeVisible();
 
-    const pkgUrl = page.url();
+    // Click the app card to go to the details page
+    await testApp.click();
+    await expect(page).toHaveURL(new RegExp(`.*app\\/${TEST_APP_NAME}`));
 
-    // Look for the markdown link inside the package card
-    const markdownLink = testPackage.locator(".markdown-content a").first();
-    await expect(markdownLink).toBeVisible();
+    const appUrl = page.url();
 
-    // The link should have target="_blank"
-    await expect(markdownLink).toHaveAttribute("target", "_blank");
+    const externalLink = page.locator(".markdown-content a:has-text(\"project documentation\")").first();
+    await expect(externalLink).toBeVisible();
 
-    // Click the link and wait for the new page event
+    await expect(externalLink).toHaveAttribute("target", "_blank");
+
     const [newPage] = await Promise.all([
       context.waitForEvent("page"),
-      markdownLink.click(),
+      externalLink.click(),
     ]);
 
     await newPage.waitForLoadState();
 
-    // Verify the new page URL is correct (example.com from the generator)
-    expect(newPage.url()).toContain("example.com");
-
-    // Verify that clicking the link did NOT trigger the package card's routing
-    // If bubbling was not prevented, the URL would change to /pkgs#mock-test-pkg
-    expect(page.url()).toBe(pkgUrl);
+    expect(newPage.url()).not.toBe(appUrl);
+    expect(page.url()).toBe(appUrl);
 
     await newPage.close();
+
+    const internalLink = page.locator(".markdown-content a:has-text(\"enter the Nix shell\")").first();
+    await expect(internalLink).toBeVisible();
+
+    await expect(internalLink).not.toHaveAttribute("target", "_blank");
+
+    await internalLink.click();
+
+    const expectedUrl = new RegExp(`.*app\\/${TEST_APP_NAME}#run-shell`);
+    await expect(page).toHaveURL(expectedUrl);
   });
 });
