@@ -10,6 +10,15 @@ let
 in
 
 {
+  pkgs.python3-emerge.build.identityBuilder = {
+    enable = true;
+    derivation = pkgs.python3Packages.emerge;
+  };
+  pkgs.emerge.build.identityBuilder = {
+    enable = true;
+    derivation = pkgs.python3Packages.toPythonApplication pkgs.python3-emerge;
+  };
+
   apps.emerge = {
     displayName = "EMerge";
     description = "Electromagnetic field computation program.";
