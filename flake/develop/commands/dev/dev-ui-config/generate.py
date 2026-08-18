@@ -21,11 +21,7 @@ def generate_grants():
 
 
 def generate_pkg_recipe(name, index, is_test_pkg=False):
-    description = (
-        f"[Markdown Link Test](https://example.com) {fake.sentence()}"
-        if is_test_pkg
-        else fake.sentence()
-    )
+    description = fake.sentence()
     return f"""{{
   config,
   lib,
@@ -75,7 +71,7 @@ def generate_app_recipe(name, index, is_test_app=False):
 {{
 apps."{name}" = {{
   description = "{fake.sentence()}";
-  usage = "{fake.text()}";
+  usage = "{fake.text()}\n\n[project documentation](https://example.com)\n\n[enter the Nix shell](app/mock-test#run-shell)";
 
   links = {{
     website = "{fake.url()}";
