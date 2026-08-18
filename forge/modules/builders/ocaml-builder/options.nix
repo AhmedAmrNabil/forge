@@ -18,7 +18,7 @@
       [Nixpkgs OCaml documentation](https://nixos.org/manual/nixpkgs/unstable/#sec-language-ocaml)
     '';
 
-    scope = lib.mkOption {
+    ocamlPackages = lib.mkOption {
       type = lib.types.functionTo lib.types.attrs;
       default = pkgs: pkgs.ocaml-ng.ocamlPackages;
       defaultText = lib.literalExpression "pkgs: pkgs.ocaml-ng.ocamlPackages";
@@ -38,7 +38,7 @@
       description = ''
         Minimal OCaml version required to build the package.
 
-        The build fails early with an explicit message when `scope` provides an
+        The build fails early with an explicit message when `ocamlPackages` provides an
         older compiler.
 
         Mapped to `minimalOCamlVersion`.
