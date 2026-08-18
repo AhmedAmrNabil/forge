@@ -43,7 +43,7 @@ in
     build.ocamlBuilder = {
       enable = true;
 
-      scope = _: ocamlPackages;
+      ocamlPackages = _: ocamlPackages;
 
       packages = {
         build = [ pkgs.pkg-config ];
