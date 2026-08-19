@@ -2,10 +2,22 @@ module Main.Helpers.Html exposing (..)
 
 import Html exposing (Attribute, Html, button, div, node)
 import Html.Attributes exposing (attribute, class)
-import Html.Events
+import Html.Events exposing (stopPropagationOn)
 import Json.Decode
+import Main.Config.App exposing (AppRuntime, showAppRuntime, showAppRuntimeDescription)
 import Main.Icons exposing (iconCopy)
 import Main.Update.Types exposing (..)
+
+
+viewRuntimeBadge : AppRuntime -> Html Update
+viewRuntimeBadge runtime =
+    Html.span [ class "has-tooltip d-inline-block me-1", stopPropagationOn "click" (Json.Decode.succeed ( Update_NoOp, True )) ]
+        [ Html.span [ class "badge rounded-pill bg-primary-subtle text-primary-emphasis border border-primary-subtle" ] [ Html.text (showAppRuntime runtime |> String.toLower) ]
+        , div [ class "tooltip bs-tooltip-top", attribute "role" "tooltip" ]
+            [ div [ class "tooltip-arrow" ] []
+            , div [ class "tooltip-inner" ] [ Html.text (showAppRuntimeDescription runtime) ]
+            ]
+        ]
 
 
 mdResolveLangCodeAlias : String -> String
