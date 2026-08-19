@@ -2,7 +2,7 @@ module Main.View exposing (..)
 
 import Html exposing (Html, a, button, div, footer, header, img, input, li, main_, section, span, text, ul)
 import Html.Attributes exposing (attribute, class, href, id, placeholder, src, style, target, title, type_, value)
-import Html.Events exposing (onInput, preventDefaultOn)
+import Html.Events exposing (onBlur, onFocus, onInput, preventDefaultOn)
 import Json.Decode as Decode
 import Main.Config exposing (..)
 import Main.Config.App exposing (..)
@@ -32,7 +32,7 @@ view model =
             [ class "py-3" ]
             [ div
                 [ class "d-flex align-items-center gap-2 gap-md-3" ]
-                [ viewTitle
+                [ viewTitle model.model_searchFocused
                 , div [ class "flex-grow-1" ]
                     [ viewSearchInput model ]
                 , div
@@ -89,8 +89,8 @@ view model =
         ]
 
 
-viewTitle : Html Update
-viewTitle =
+viewTitle : Bool -> Html Update
+viewTitle searchFocused =
     let
         onClickRoute =
             Route_Apps defaultRouteApps
@@ -111,7 +111,15 @@ viewTitle =
             ]
             []
         , span
-            [ class "brand-text fw-bold" ]
+            [ class "brand-text fw-bold"
+            , class
+                (if searchFocused then
+                    " d-none d-md-block"
+
+                 else
+                    ""
+                )
+            ]
             [ text "NGI Forge" ]
         ]
 
@@ -176,6 +184,8 @@ viewSearchInput model =
             , id "main-search-bar"
             , attribute "data-testid" "main-search-bar"
             , onInput (\pattern -> Update_Search pattern)
+            , onFocus (Update_SearchFocus True)
+            , onBlur (Update_SearchFocus False)
             , preventDefaultOn "keydown"
                 (decodeEscapeKey
                     |> Decode.map (\_ -> ( Update_Search "", True ))

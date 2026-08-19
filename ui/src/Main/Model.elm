@@ -20,6 +20,7 @@ type alias Model =
     , model_navbarExpanded : Bool
     , model_RecipeOptions : RecipeOptions
     , model_askFeedback : Bool
+    , model_searchFocused : Bool
     }
 
 
