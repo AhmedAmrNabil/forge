@@ -136,7 +136,6 @@ jobs:
         run: |
           nix build --inputs-from . nixpkgs#pkgsStatic.git-pages-cli -o gpc-result
           cp gpc-result/bin/git-pages-cli ./git-pages-cli
-          chmod +x ./git-pages-cli
 
       - name: Upload preview UI
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
