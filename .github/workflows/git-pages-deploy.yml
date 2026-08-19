@@ -67,6 +67,8 @@ jobs:
           PREVIEW_URL_BASE="${PREVIEW_URL}/pr-${PR_NUMBER}"
           COMMIT_URL_BASE="${PREVIEW_URL}/${PR_REV}"
 
+          chmod +x ./git-pages-cli
+
           # make each preview expire in 100 days
           ./git-pages-cli "$COMMIT_URL_BASE" --upload-dir deploy_dist_commit --expires 100
           ./git-pages-cli "$PREVIEW_URL_BASE" --upload-dir deploy_dist_pr --expires 100
