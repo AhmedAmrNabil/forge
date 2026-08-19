@@ -14,19 +14,6 @@ on:
 permissions: {}
 
 jobs:
-  test:
-    name: Run tests
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-        with:
-          persist-credentials: false
-
-      # - name: Get more storage space
-      #   uses: wimpysworld/nothing-but-nix@main
-
   lint:
     name: Run format checks
     runs-on: ubuntu-latest
