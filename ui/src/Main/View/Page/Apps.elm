@@ -1,7 +1,9 @@
 module Main.View.Page.Apps exposing (..)
 
 import Html exposing (Html, a, div, h5, img, p, small, span, text)
-import Html.Attributes exposing (attribute, class, href, src, style)
+import Html.Attributes exposing (attribute, class, href, src, style, title)
+import Html.Events exposing (stopPropagationOn)
+import Json.Decode as Decode
 import Main.Config exposing (..)
 import Main.Config.App exposing (..)
 import Main.Helpers.Html exposing (..)
@@ -131,22 +133,22 @@ viewPageAppsApp _ _ app =
             ]
             (List.concat
                 [ if app.app_programs.appPrograms_runtimes.appProgramsRuntimes_program.enable then
-                    [ span [ class "badge rounded-pill bg-primary-subtle text-primary-emphasis border border-primary-subtle" ] [ text "program" ] ]
+                    [ viewRuntimeBadge AppRuntime_Program ]
 
                   else
                     []
                 , if app.app_programs.appPrograms_runtimes.appProgramsRuntimes_shell.enable then
-                    [ span [ class "badge rounded-pill bg-primary-subtle text-primary-emphasis border border-primary-subtle" ] [ text "shell" ] ]
+                    [ viewRuntimeBadge AppRuntime_Shell ]
 
                   else
                     []
                 , if app.app_services.appServices_runtimes.appServicesRuntimes_container.enable then
-                    [ span [ class "badge rounded-pill bg-primary-subtle text-primary-emphasis border border-primary-subtle" ] [ text "container" ] ]
+                    [ viewRuntimeBadge AppRuntime_Container ]
 
                   else
                     []
                 , if app.app_services.appServices_runtimes.appServicesRuntimes_nixos.enable then
-                    [ span [ class "badge rounded-pill bg-primary-subtle text-primary-emphasis border border-primary-subtle" ] [ text "nixos" ] ]
+                    [ viewRuntimeBadge AppRuntime_NixOS ]
 
                   else
                     []

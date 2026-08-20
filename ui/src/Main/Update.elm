@@ -103,6 +103,9 @@ update upd modelInit =
         Update_ToggleNavBar ->
             ( { model | model_navbarExpanded = not model.model_navbarExpanded }, Cmd.none )
 
+        Update_SearchFocus focused ->
+            ( { model | model_searchFocused = focused }, Cmd.none )
+
         Update_Search search ->
             if
                 -- Delay the search on `Page`s not already displaying search results

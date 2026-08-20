@@ -2,7 +2,7 @@ module Main.View.Page.App exposing (..)
 
 import Dict
 import Html exposing (Html, a, button, div, h2, h4, h6, hr, img, li, p, small, span, text, ul)
-import Html.Attributes exposing (attribute, class, href, id, rel, src, style, tabindex, target)
+import Html.Attributes exposing (attribute, class, href, id, rel, src, style, tabindex, target, title)
 import Html.Events exposing (stopPropagationOn)
 import Json.Decode as Decode
 import Main.Config exposing (..)
@@ -270,8 +270,7 @@ viewPageAppConfiguration _ pageApp =
             (listAppRuntimeAvailable pageApp.pageApp_app
                 |> List.map
                     (\r ->
-                        span [ class "badge rounded-pill bg-primary-subtle text-primary-emphasis border border-primary-subtle me-1" ]
-                            [ text (showAppRuntime r |> String.toLower) ]
+                        viewRuntimeBadge r
                     )
             )
         ]

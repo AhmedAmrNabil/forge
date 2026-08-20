@@ -48,6 +48,7 @@ init flags =
             , model_navbarExpanded = False
             , model_RecipeOptions = defaultRecipeOptions
             , model_askFeedback = True
+            , model_searchFocused = False
             }
     in
     case flags.href |> Url.fromString of

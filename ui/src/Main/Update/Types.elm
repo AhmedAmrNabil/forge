@@ -40,6 +40,7 @@ type Update
     | Update_FocusResult (Result Dom.Error ())
     | Update_AmbientKeyPress AmbientKeyState
     | Update_Search Search
+    | Update_SearchFocus Bool
     | Update_NoOp
 
 

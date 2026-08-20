@@ -284,6 +284,22 @@ showAppRuntime r =
             "NixOS"
 
 
+showAppRuntimeDescription : AppRuntime -> String
+showAppRuntimeDescription r =
+    case r of
+        AppRuntime_Program ->
+            "Run directly on your system"
+
+        AppRuntime_Shell ->
+            "Use within a shell environment"
+
+        AppRuntime_Container ->
+            "Deploy as an isolated container"
+
+        AppRuntime_NixOS ->
+            "Deploy as a virtual machine (VM)"
+
+
 type alias AppLinks =
     { appLinks_docs : Maybe String
     , appLinks_source : Maybe String
