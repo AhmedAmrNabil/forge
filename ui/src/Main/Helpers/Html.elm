@@ -14,8 +14,7 @@ viewRuntimeBadge runtime =
     Html.span [ class "has-tooltip d-inline-block me-1", stopPropagationOn "click" (Json.Decode.succeed ( Update_NoOp, True )) ]
         [ Html.span [ class "badge rounded-pill bg-primary-subtle text-primary-emphasis border border-primary-subtle" ] [ Html.text (showAppRuntime runtime |> String.toLower) ]
         , div [ class "tooltip bs-tooltip-top", attribute "role" "tooltip" ]
-            [ div [ class "tooltip-arrow" ] []
-            , div [ class "tooltip-inner" ] [ Html.text (showAppRuntimeDescription runtime) ]
+            [ div [ class "tooltip-inner" ] [ Html.text (showAppRuntimeDescription runtime) ]
             ]
         ]
 

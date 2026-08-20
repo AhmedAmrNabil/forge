@@ -583,16 +583,18 @@ pre code.hljs {
   z-index: 1070;
   --bs-tooltip-bg: var(--bs-body-bg);
   --bs-tooltip-color: var(--bs-body-color);
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
-}
-
-.has-tooltip .tooltip-arrow {
-  left: 50% !important;
-  transform: translateX(-50%) !important;
 }
 
 .has-tooltip .tooltip-inner {
   max-width: 350px;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--bs-border-color);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  text-align: left;
+}
+
+[data-bs-theme="dark"] .has-tooltip .tooltip-inner {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.4);
 }
 
 .has-tooltip:hover .tooltip,
