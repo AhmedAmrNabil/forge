@@ -3,6 +3,7 @@
 
 {
   lib,
+  pkgs,
   ...
 }:
 
@@ -18,18 +19,18 @@
       [Nixpkgs OCaml documentation](https://nixos.org/manual/nixpkgs/unstable/#sec-language-ocaml)
     '';
 
-    ocamlPackages = lib.mkOption {
-      type = lib.types.functionTo lib.types.attrs;
-      default = pkgs: pkgs.ocaml-ng.ocamlPackages;
-      defaultText = lib.literalExpression "pkgs: pkgs.ocaml-ng.ocamlPackages";
+    buildDunePackage = lib.mkOption {
+      type = with lib.types; functionTo package;
+      default = pkgs.ocaml-ng.ocamlPackages.buildDunePackage;
+      defaultText = lib.literalExpression "pkgs.ocaml-ng.ocamlPackages.buildDunePackage";
       description = ''
-        The OCaml package scope providing the builder and the dependencies.
+        The OCaml package builder.
 
-        Override to build against a different OCaml compiler version. All
-        dependencies must be taken from the same scope, otherwise they are
-        compiled for an incompatible compiler version.
+        Override to build against a different OCaml compiler version.
+        All dependencies must be taken from the same scope,
+        otherwise they are compiled for an incompatible compiler version.
       '';
-      example = lib.literalExpression "pkgs: pkgs.ocaml-ng.ocamlPackages_latest";
+      example = lib.literalExpression "pkgs.ocaml-ng.ocamlPackages_latest.buildDunePackage";
     };
 
     minimalVersion = lib.mkOption {
