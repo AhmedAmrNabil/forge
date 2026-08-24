@@ -5,6 +5,15 @@
 }:
 
 {
+  pkgs.python3-padne.build.identityBuilder = {
+    enable = true;
+    derivation = pkgs.pkgsOriginal.python3Packages.padne;
+  };
+  pkgs.padne.build.identityBuilder = {
+    enable = true;
+    derivation = pkgs.pkgsOriginal.padne;
+  };
+
   apps.padne = {
     displayName = "Padne";
     description = "KiCad-focused Power Delivery Network Simulator.";
