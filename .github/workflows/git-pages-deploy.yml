@@ -22,6 +22,7 @@ jobs:
       statuses: write # commit statuses
       pull-requests: write # pr comments
     if: >
+      github.repository_owner == 'ngi-nix' &&
       (github.event.workflow_run.event == 'pull_request' || github.event.workflow_run.event == 'workflow_dispatch') &&
       github.event.workflow_run.conclusion == 'success'
 

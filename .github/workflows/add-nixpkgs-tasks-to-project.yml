@@ -7,6 +7,7 @@ on:
 
 jobs:
   import_items:
+    if: github.repository_owner == 'ngi-nix'
     runs-on: ubuntu-latest
     steps:
       - name: Fetch and add items to Project
