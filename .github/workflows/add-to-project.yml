@@ -14,6 +14,7 @@ permissions: {}
 
 jobs:
   add-to-project:
+    if: github.repository_owner == 'ngi-nix'
     runs-on: ubuntu-latest
     steps:
       - name: Add issue/pr to project

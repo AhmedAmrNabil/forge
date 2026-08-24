@@ -10,6 +10,7 @@ env:
 
 jobs:
   check-build-status:
+    if: github.repository_owner == 'ngi-nix'
     strategy:
       fail-fast: false
       matrix:
