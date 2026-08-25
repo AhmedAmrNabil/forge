@@ -15,7 +15,7 @@
       attrs =
         builder: finalAttrs: previousAttrs:
         {
-          propagatedBuildInputs = builder.packages.dependencies;
+          propagatedBuildInputs = previousAttrs.propagatedBuildInputs or [ ] ++ builder.packages.dependencies;
 
           env = (previousAttrs.env or { }) // {
             DUNE_CACHE = "disabled";
