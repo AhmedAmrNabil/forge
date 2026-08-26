@@ -29,5 +29,34 @@
         hello | grep "Hello, world"
       '';
     };
+    runner = lib.mkOption {
+      type = lib.types.enum [
+        "bash"
+        "nixos"
+      ];
+      default = "bash";
+      description = ''
+        Type of runner to execute the script.
+
+        When using the `nixos` VM runner, you can pass extra configurations
+        using the `test.nixosModules` option.
+      '';
+    };
+    nixosConfig = lib.mkOption {
+      type = lib.types.deferredModule;
+      default = { };
+      description = ''
+        Extra configuration passed to the NixOS VM running the test.
+
+        See the list of available
+        [NixOS options](https://search.nixos.org/options) .
+      '';
+      example = lib.literalExpression ''
+        {
+          virtualisation.memorySize = 4096;
+          virtualisation.diskSize = 10240;
+        }
+      '';
+    };
   };
 }
