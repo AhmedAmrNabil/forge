@@ -111,11 +111,7 @@
                   nativeCheckInputs = builder.packages.check;
 
                   passthru = {
-                    test = pkgs.testers.runCommand {
-                      name = "${finalAttrs.pname}-test";
-                      buildInputs = [ finalAttrs.finalPackage ] ++ config.test.packages;
-                      script = config.test.script + "\ntouch $out";
-                    };
+                    test = config.test.derivation { inherit pkgs finalAttrs; };
 
                     env = pkgs.mkShell {
                       dontBuild = true;
