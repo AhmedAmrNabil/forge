@@ -111,31 +111,7 @@
                   nativeCheckInputs = builder.packages.check;
 
                   passthru = {
-                    test =
-                      let
-                        runner = {
-                          bash = pkgs.testers.runCommand {
-                            name = "${finalAttrs.pname}-test";
-                            buildInputs = [ finalAttrs.finalPackage ] ++ config.test.packages;
-                            script = config.test.script + "\ntouch $out";
-                          };
-
-                          nixos = pkgs.testers.runNixOSTest {
-                            name = "${finalAttrs.pname}-test";
-                            nodes.machine = {
-                              imports = [ config.test.nixosConfig ];
-                              environment.systemPackages = [ finalAttrs.finalPackage ] ++ config.test.packages;
-                              system.stateVersion = "25.11";
-                            };
-                            testScript = ''
-                              machine.start()
-                              machine.wait_for_unit("multi-user.target")
-                              machine.succeed("${pkgs.writeShellScript "${finalAttrs.pname}-test" config.test.script}")
-                            '';
-                          };
-                        };
-                      in
-                      runner.${config.test.runner};
+                    test = config.test.derivation { inherit pkgs finalAttrs; };
 
                     env = pkgs.mkShell {
                       dontBuild = true;

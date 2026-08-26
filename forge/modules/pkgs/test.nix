@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   ...
 }:
@@ -41,6 +42,45 @@
         When using the `nixos` VM runner, you can pass extra configurations
         using the `test.nixosModules` option.
       '';
+    };
+    derivation = lib.mkOption {
+      internal = true;
+      description = "Function that builds the test derivation according to runner.";
+      type = lib.types.functionTo lib.types.package;
+      default =
+        {
+          pkgs,
+          finalAttrs,
+          ...
+        }:
+
+        let
+          name = "${finalAttrs.pname}-test";
+          packages = [ finalAttrs.finalPackage ] ++ config.packages;
+        in
+
+        if config.runner == "bash" then
+          pkgs.testers.runCommand {
+            inherit name;
+            buildInputs = packages;
+            script = config.script + "\ntouch $out";
+          }
+        else if config.runner == "nixos" then
+          pkgs.testers.runNixOSTest {
+            inherit name;
+            nodes.machine = {
+              imports = [ config.nixosConfig ];
+              environment.systemPackages = packages;
+              system.stateVersion = "25.11";
+            };
+            testScript = ''
+              machine.start()
+              machine.wait_for_unit("multi-user.target")
+              machine.succeed("${pkgs.writeShellScript "${finalAttrs.pname}-test" config.script}")
+            '';
+          }
+        else
+          throw "Unsupported test runner: ${config.runner}";
     };
     nixosConfig = lib.mkOption {
       type = lib.types.deferredModule;
