@@ -40,6 +40,14 @@
       description = "Short application description. Maximum 120 characters.";
       example = "A fast and secure web server for self-hosted applications.";
     };
+    longDescription = lib.mkOption {
+      type = lib.types.str // {
+        check = v: lib.isString v && lib.stringLength v <= 420;
+        description = "string of 420 characters or fewer";
+      };
+      default = "";
+      description = "Long application description. Maximum 420 characters.";
+    };
     usage = lib.mkOption {
       type = lib.types.str;
       default = "";
