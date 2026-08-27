@@ -135,6 +135,19 @@ viewPageAppFeedback model =
             ]
 
 
+getAppDescription : PageApp -> String
+getAppDescription pageApp =
+    let
+        app =
+            pageApp.pageApp_app
+    in
+    if String.isEmpty app.app_longDescription then
+        app.app_description
+
+    else
+        app.app_longDescription
+
+
 viewPageAppDescription : Model -> PageApp -> Html Update
 viewPageAppDescription model pageApp =
     div []
@@ -142,7 +155,12 @@ viewPageAppDescription model pageApp =
             [ class "text-body-secondary"
             , attribute "data-testid" "app-description"
             ]
-            [ text pageApp.pageApp_app.app_description ]
+            [ div [ class "text-body-secondary" ]
+                [ pageApp
+                    |> getAppDescription
+                    |> Markdown.render
+                ]
+            ]
         , viewPageAppUsage model pageApp
         ]
 

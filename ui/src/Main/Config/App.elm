@@ -10,6 +10,7 @@ type alias App =
     , app_outputName : AppName
     , app_displayName : String
     , app_description : String
+    , app_longDescription : String
     , app_usage : String
     , app_programs : AppPrograms
     , app_services : AppServices
@@ -28,6 +29,7 @@ decodeApp =
         |> Decode.andMap (Decode.field "outputName" Decode.string)
         |> Decode.andMap (Decode.field "displayName" Decode.string)
         |> Decode.andMap (Decode.field "description" Decode.string)
+        |> Decode.andMap (Decode.field "longDescription" Decode.string)
         |> Decode.andMap (Decode.field "usage" Decode.string)
         |> Decode.andMap (Decode.field "programs" decodeAppPrograms)
         |> Decode.andMap (Decode.field "services" decodeAppServices)

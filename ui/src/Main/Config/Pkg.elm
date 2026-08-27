@@ -10,6 +10,7 @@ type alias Pkg =
     { pkg_pname : PkgName
     , pkg_outputName : PkgName
     , pkg_description : String
+    , pkg_longDescription : String
     , pkg_version : String
     , pkg_homePage : String
     , pkg_mainProgram : String
@@ -26,6 +27,7 @@ decodePkg =
         |> Decode.flipMap (Decode.field "pname" Decode.string)
         |> Decode.andMap (Decode.field "outputName" Decode.string)
         |> Decode.andMap (Decode.field "description" Decode.string)
+        |> Decode.andMap (Decode.field "longDescription" Decode.string)
         |> Decode.andMap (Decode.field "version" Decode.string)
         |> Decode.andMap (Decode.field "homePage" Decode.string)
         |> Decode.andMap (Decode.field "mainProgram" Decode.string)
