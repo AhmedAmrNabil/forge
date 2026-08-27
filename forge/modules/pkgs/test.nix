@@ -53,12 +53,10 @@
           finalAttrs,
           ...
         }:
-
         let
           name = "${finalAttrs.pname}-test";
           packages = [ finalAttrs.finalPackage ] ++ config.packages;
         in
-
         if config.runner == "bash" then
           pkgs.testers.runCommand {
             inherit name;
@@ -66,7 +64,7 @@
             script = config.script + "\ntouch $out";
           }
         else if config.runner == "nixos" then
-          pkgs.testers.runNixOSTest {
+          (pkgs.testers.runNixOSTest {
             inherit name;
             nodes.machine = {
               imports = [ config.nixosConfig ];
@@ -78,7 +76,8 @@
               machine.wait_for_unit("multi-user.target")
               machine.succeed("${pkgs.writeShellScript "${finalAttrs.pname}-test" config.script}")
             '';
-          }
+          }).overrideTestDerivation
+            (_: lib.optionalAttrs (!config.sandbox) { __noChroot = true; })
         else
           throw "Unsupported test runner: ${config.runner}";
     };
@@ -96,6 +95,26 @@
           virtualisation.memorySize = 4096;
           virtualisation.diskSize = 10240;
         }
+      '';
+    };
+    sandbox = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = ''
+        Enable the Nix sandbox when running tests through the `nixos` runner.
+
+        Set to _false_ to allow internet access during tests, which may be
+        required when tests need to download additional resources at runtime.
+
+        When disabled, tests must be launched with Nix sandbox set to relaxed
+        using the following command:
+
+        ```
+        nix build .#pkgs.<app-name>.test --option sandbox relaxed --builders ""
+        ```
+
+        Disabling sandbox can cause problems with test reproducibility.
+        Use only when necessary.
       '';
     };
   };
