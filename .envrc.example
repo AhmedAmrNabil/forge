@@ -1,0 +1,4 @@
+# shellcheck shell=bash
+
+watch_dir flake/develop/
+use nix
