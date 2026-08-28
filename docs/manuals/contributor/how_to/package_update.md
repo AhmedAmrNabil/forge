@@ -24,7 +24,7 @@ Update script can also be launched without entering the development environment:
 nix develop --command forge-update
 
 # or
-nix-shell --run "forge-update
+nix-shell --run forge-update
 ```
 
 :::
