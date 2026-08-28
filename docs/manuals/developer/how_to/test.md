@@ -48,7 +48,7 @@ test-ui --ui-host 127.0.0.1
 - Run the tests using Forge production instance
 
 ```bash
-env BASE_URL="https://ngi-nix.github.io/forge/" test-ui --ui-host 127.0.0.1
+env BASE_URL=https://ngi.nixos.org test-ui --ui-host 127.0.0.1
 ```
 
 ### Notes

@@ -51,7 +51,7 @@ pygments_style = "sphinx"
 
 exclude_patterns = []
 
-html_baseurl = "https://ngi-nix.github.io/forge/"
+html_baseurl = "https://ngi.nixos.org/"
 
 html_theme = "sphinx_book_theme"
 

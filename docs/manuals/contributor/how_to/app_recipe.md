@@ -3,7 +3,7 @@
 ::: {important}
 For the list of all available configuration options for application recipes,
 see the
-[application options reference](https://ngi-nix.github.io/forge/recipe/options?s=apps).
+[application options reference](https://ngi.nixos.org/recipe/options?s=apps).
 :::
 
 Before writing a recipe, spend some time understanding the software:

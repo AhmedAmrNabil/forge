@@ -1,7 +1,7 @@
 # NGI Forge 0.1 released
 
 We are excited to announce the initial release of
-[NGI Forge](https://ngi-nix.github.io/forge/), our new software packaging and
+[NGI Forge](https://ngi.nixos.org/), our new software packaging and
 distribution system for projects supported by the
 [Next Generation Internet (NGI)](https://www.ngi.eu/) initiative via
 [NLnet](https://nlnet.nl/).
@@ -26,7 +26,7 @@ extend support for other languages as we keep on adding more packages.
 Applications support three runtimes: a **shell environment** for CLI and GUI
 programs, **OCI compatible containers**, and **NixOS** for system services.
 
-A nice [Web UI](https://ngi-nix.github.io/forge/) lets users browse available
+A nice [Web UI](https://ngi.nixos.org/) lets users browse available
 NGI software and run it using simple commands.
 
 Recipes can be generated and maintained with AI assistance by following the instructions in the
@@ -49,7 +49,7 @@ Browse [the list of open user stories](https://github.com/orgs/ngi-nix/projects/
 
 ## Try it out
 
-Visit [NGI Forge](https://ngi-nix.github.io/forge/) to browse and test the first
+Visit [NGI Forge](https://ngi.nixos.org/) to browse and test the first
 available applications.
 
 Source code is available on [GitHub](https://github.com/ngi-nix/forge) and any
