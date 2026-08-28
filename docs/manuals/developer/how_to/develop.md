@@ -10,7 +10,7 @@ Alternatively, use [`direnv`](https://direnv.net/) to automatically launch the
 environment when entering Forge source code directory:
 
 ```bash
-echo -e "watch_dir flake/develop/\nuse nix" >.envrc
+echo -e "watch_dir flake/develop/\nuse nix" >.envrc # or cp .envrc.example .envrc
 
 direnv allow
 ```
