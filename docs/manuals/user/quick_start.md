@@ -1,6 +1,6 @@
 # Quick start
 
-1. Visit the [NGI Forge web UI](https://ngi-nix.github.io/forge) in your browser.
+1. Visit the [NGI Forge web UI](https://ngi.nixos.org) in your browser.
 2. Browse the list of available applications.
 3. Choose an application and click the **Run** button.
 4. Follow the instructions to launch the application using your preferred runtime:

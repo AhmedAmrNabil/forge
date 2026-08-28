@@ -3,7 +3,7 @@
 ::: {important}
 For the list of all available configuration options for package recipes visit
 the
-[package options reference](https://ngi-nix.github.io/forge/recipe/options?s=pkgs).
+[package options reference](https://ngi.nixos.org/recipe/options?s=pkgs).
 :::
 
 Before writing a recipe, please spend some time to understand the software

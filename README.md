@@ -8,7 +8,7 @@ This software is in active development. Expect backwards incompatible changes.
   **multi-component applications** using
   [module system](https://nix.dev/tutorials/module-system/index.html)
 
-- [Web UI](https://ngi-nix.github.io/forge)
+- [Web UI](https://ngi.nixos.org)
 
 - Easy [self hosting](#self-hosting)
 
