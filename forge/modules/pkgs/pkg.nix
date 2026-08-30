@@ -41,6 +41,14 @@
       description = "Short package description. Maximum 120 characters.";
       example = "A program that prints greeting messages.";
     };
+    longDescription = lib.mkOption {
+      type = lib.types.str // {
+        check = v: lib.isString v && lib.stringLength v <= 420;
+        description = "string of 420 characters or fewer";
+      };
+      default = "";
+      description = "Long package description. Maximum 420 characters.";
+    };
     version = lib.mkOption {
       type = lib.types.str;
       default = "1.0.0";

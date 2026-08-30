@@ -22,8 +22,9 @@ in
   apps.emerge = {
     displayName = "EMerge";
     description = "Electromagnetic field computation program.";
-    usage = ''
+    longDescription = ''
       EMerge is a python based FEM EM library for the time harmonic helmholtz formulation.
+
       You can use it to simulate:
 
       - RF Filters
@@ -32,9 +33,8 @@ in
       - Optycal systems
       - Arrays and periodic structures
       - Much more!
-
-      #### Basic Usage
-
+    '';
+    usage = ''
       Write the following script into a local file:
 
       ```py
