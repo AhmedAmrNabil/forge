@@ -7,7 +7,12 @@
   pkgs.repath-studio = {
     build.identityBuilder = {
       enable = true;
-      derivation = pkgs.pkgsOriginal.repath-studio;
+      derivation = pkgs.pkgsOriginal.repath-studio.overrideAttrs (old: {
+        patches = (old.patches or [ ]) ++ [
+          # TODO remove when https://github.com/NixOS/nixpkgs/pull/558384 is in nixos-unstable
+          ./fix-karma-sandbox.patch
+        ];
+      });
     };
   };
 
