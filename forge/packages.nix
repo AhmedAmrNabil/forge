@@ -5,6 +5,7 @@
   forge-inputs,
   forge-lib,
   flake-parts-lib,
+  system,
   ...
 }:
 
@@ -64,7 +65,7 @@ let
     ui = pkgs.callPackage ../ui/package.nix {
       inherit (config.packages) _forge;
       inherit appIcons;
-      buildElmApplication = (forge-inputs.elm2nix.lib.elm2nix pkgs).buildElmApplication;
+      buildElmApplication = forge-inputs.self.legacyPackages.${system}.elm2nix.buildElmApplication;
       highlight-js = pkgs.callPackage ../flake/packages/highlight-js.nix { };
     };
 

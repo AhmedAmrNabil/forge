@@ -22,6 +22,7 @@ let
     entry = [ "src/Main.elm" ];
     output = "js/Elm.js";
     doMinification = true;
+    useTerser = true;
     enableOptimizations = true;
   };
 
