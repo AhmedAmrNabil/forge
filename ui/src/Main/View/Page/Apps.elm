@@ -83,7 +83,7 @@ viewPageAppsApp _ _ app =
             Route_App { defaultRouteApp | routeApp_name = app.app_name }
     in
     div
-        [ class "card m-item-card shadow-sm p-2 p-sm-3 h-100 d-flex flex-column"
+        [ class "card bg-body-secondary m-item-card shadow-sm p-2 p-sm-3 h-100 d-flex flex-column"
         , attribute "data-testid" "app-result"
         , onClick (Update_Route onClickRoute)
         , style "cursor" "pointer"
