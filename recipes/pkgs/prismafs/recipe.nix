@@ -32,9 +32,6 @@ in
     };
 
     build.extraAttrs = {
-      patches = [
-        ./001-fix-fuse-flag-darwin.patch
-      ];
       postPatch = ''
         #remove the binary shipped with the source
         rm -rf prismafs
