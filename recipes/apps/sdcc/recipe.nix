@@ -74,6 +74,5 @@ in
     test.programs.script = ''
       sdcc ${recipe.data.main.path} -o ${lib.removeSuffix ".c" recipe.data.main.name}.ihx
     '';
-
   };
 }
