@@ -33,9 +33,9 @@ viewPageApp model pageApp =
                 , viewPageAppIconModal model pageApp
                 ]
             , div
-                [ class "col-12 col-lg-3 order-lg-first" ]
-                [ viewPageAppResources model pageApp
-                , viewPageAppNgiGrants model pageApp
+                [ class "col-12 col-lg-3" ]
+                [ viewPageAppNgiGrants model pageApp
+                , viewPageAppResources model pageApp
                 , viewPageAppConfiguration model pageApp
                 , viewPageAppMaintainers model pageApp
                 ]
@@ -244,12 +244,12 @@ viewPageAppConfiguration _ pageApp =
             pageApp.pageApp_app.app_services.appServices_components
     in
     div
-        [ class "box-container target-highlight mb-3"
+        [ class "bg-body-tertiary p-3 rounded-2 target-highlight mb-3"
         , id (showRouteAppFocus RouteAppFocus_Configuration)
         , tabindex -1
         ]
         [ h6
-            [ class "mt-3 mb-3 ms-2"
+            [ class "mt-2 mb-3 ms-2"
             ]
             [ text "Configuration"
             , a
@@ -284,7 +284,7 @@ viewPageAppConfiguration _ pageApp =
                 ]
         , div [ class "ms-2 mb-1" ]
             [ small [ class "text-body-secondary" ] [ text "Runtimes" ] ]
-        , div [ class "ms-2 mb-3" ]
+        , div [ class "ms-2 mb-2" ]
             (listAppRuntimeAvailable pageApp.pageApp_app
                 |> List.map
                     (\r ->
@@ -301,12 +301,12 @@ viewPageAppResources model pageApp =
             pageApp.pageApp_route
     in
     div
-        [ class "box-container target-highlight mb-3"
+        [ class "bg-body-tertiary p-3 rounded-2 target-highlight mb-3"
         , id (showRouteAppFocus RouteAppFocus_Resources)
         , tabindex -1
         ]
         [ h6
-            [ class "mt-3 mb-3 ms-2"
+            [ class "mt-2 mb-3 ms-2"
             ]
             [ text "Resources"
             , a
@@ -319,7 +319,7 @@ viewPageAppResources model pageApp =
                 ]
                 []
             ]
-        , ul [ style "padding-left" "10px" ]
+        , ul [ class "mb-0 ps-2 small" ]
             (List.concat
                 [ viewPageAppResourcesItem "Homepage" pageApp.pageApp_app.app_links.appLinks_website
                 , viewPageAppResourcesItem "Documentation" pageApp.pageApp_app.app_links.appLinks_docs
@@ -346,7 +346,7 @@ viewPageAppMaintainers _ pageApp =
             , tabindex -1
             ]
             [ h6
-                [ class "mt-3 mb-3 ms-2"
+                [ class "my-2 ms-2"
                 ]
                 [ text "Maintainers"
                 , a
@@ -393,7 +393,7 @@ viewPageAppResourcesItem name value =
             []
 
         Just url ->
-            [ li [ class "list-group-item bg-transparent px-0 mb-3" ]
+            [ li [ class "list-group-item bg-transparent px-0 mb-2" ]
                 [ a
                     [ href url
                     , target "_blank"
@@ -429,12 +429,12 @@ viewPageAppNgiGrants _ pageApp =
 
     else
         div
-            [ class "box-container target-highlight mb-3"
+            [ class "bg-body-tertiary p-3 rounded-2 target-highlight mb-3"
             , id (showRouteAppFocus RouteAppFocus_Grants)
             , tabindex -1
             ]
             [ h6
-                [ class "mt-3 mb-3 ms-2"
+                [ class "mt-2 mb-3 ms-2"
                 ]
                 [ text "NGI Grants"
                 , a
@@ -461,7 +461,7 @@ viewPageGrantCategory ( grant, subgrants ) =
         text ""
 
     else
-        div [ class "ms-2 mb-1" ]
+        div [ class "ms-2 mb-1 small" ]
             [ div [ class "mb-1" ]
                 [ small [ class "text-body-secondary" ] [ text grant ] ]
             , ul
