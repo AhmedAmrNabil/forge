@@ -26,9 +26,12 @@ in
         gnumake
         pkg-config
       ];
-      packages.run = with pkgs; [
-        fuse3
-      ];
+      packages.run =
+        with pkgs;
+        [
+          fuse3
+        ]
+        ++ lib.optional pkgs.stdenv.hostPlatform.isDarwin pkgs.macfuse-stubs;
     };
 
     build.extraAttrs = {
